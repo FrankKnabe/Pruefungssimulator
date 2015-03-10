@@ -169,6 +169,7 @@ namespace PrüfungsSimulator
                     string atext = answer[i].ToString();
                     KontoAntwort kan = new KontoAntwort(atext);
                     sp.Children.Add((System.Windows.Controls.Label)kan.ausgabe());
+                    sp.Children.Add((System.Windows.Controls.Grid)kan.tabelle());
                 }
             }
             eHost1.Child = sp;

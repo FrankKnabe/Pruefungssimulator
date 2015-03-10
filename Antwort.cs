@@ -103,9 +103,14 @@ namespace PrüfungsSimulator
             System.Windows.Controls.Label lbl =
                 new System.Windows.Controls.Label();
             lbl.Content = Antworttext;
+            return lbl;
+        }
+
+        public object tabelle()
+        {
             System.Windows.Controls.Grid grd =
                 new System.Windows.Controls.Grid();
-            return lbl;
+            return grd;
         }
 
         public KontoAntwort(string atext) : base(atext)
