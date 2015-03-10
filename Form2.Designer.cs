@@ -103,7 +103,8 @@
             this.eHost1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.eHost1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.eHost1.AutoSize = true;
+            this.eHost1.BackColor = System.Drawing.SystemColors.Control;
             this.eHost1.Location = new System.Drawing.Point(3, 24);
             this.eHost1.Name = "eHost1";
             this.eHost1.Size = new System.Drawing.Size(1, 1);
@@ -127,6 +128,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form2_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

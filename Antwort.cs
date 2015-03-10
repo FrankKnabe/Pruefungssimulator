@@ -103,6 +103,8 @@ namespace PrüfungsSimulator
             System.Windows.Controls.Label lbl =
                 new System.Windows.Controls.Label();
             lbl.Content = Antworttext;
+            System.Windows.Controls.Grid grd =
+                new System.Windows.Controls.Grid();
             return lbl;
         }
 
