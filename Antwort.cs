@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
+using System.Data.OleDb;
 
 namespace PrüfungsSimulator
 {
@@ -14,11 +15,55 @@ namespace PrüfungsSimulator
         public int AntwortID;
         public string Antworttext;
         public int FragenID;
+        public int PrüflingsID;
+
+        public void speichern(int FragenID, string Antworttext, int PrüflingsID)
+        {
+            using (OleDbConnection con = new OleDbConnection())
+            {
+                try
+                {
+                    OleDbCommand cmd = new OleDbCommand();
+                    //OleDbDataReader reader;
+
+                    con.ConnectionString = Properties.Settings.Default.cnn;
+                    cmd.Connection = con;
+                    //cmd.Parameters.Add()
+                    cmd.CommandText = "insert into PrüflingAntworten " +
+                            "(FragenID, Antwort, PrüflingsID) values" +
+                            "(" + FragenID + ", '" + Antworttext + "', " + PrüflingsID + ")";
+
+                    con.Open();
+                    try
+                    {
+                           cmd.ExecuteNonQuery();
+                    }
+                    catch (OleDbException oex)
+                    {
+                        if (oex.Message.StartsWith("Die Anweisung wurde beendet.\r\nVerletzung der PRIMARY KEY-Einschränkung"))
+                        {
+                            cmd.CommandText = "update PrüflingAntworten set Antwort = '" + Antworttext + "' where FragenID = '" + FragenID + "' and PrüflingsID = '" + PrüflingsID + "'";
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
         public Antwort()
         {
             AntwortID = 0;
             Antworttext = "leer";
             FragenID = 0;
+            PrüflingsID = 0;
         }
         public Antwort(int AntwortID, string Antworttext, int FragenID, string Antwortart)
         {
@@ -36,24 +81,29 @@ namespace PrüfungsSimulator
             this.FragenID = FragenID;
         }
 
-        public Antwort(string Antworttext)
+        public Antwort(int FragenID, string Antworttext)
         {
+            this.FragenID = FragenID;
             this.Antworttext = Antworttext;
         }
+
+
         //abstract public UIElement getUIElement();  
     }
 
     class EinfachAntwort : Antwort
     {
+        System.Windows.Controls.RadioButton rb =
+            new System.Windows.Controls.RadioButton();
         public object ausgabe()
         {
-                System.Windows.Controls.RadioButton rb =
-                    new System.Windows.Controls.RadioButton();
+
                 rb.Content = Antworttext;
                 return rb;
         }
 
-        public EinfachAntwort(string atext) : base(atext)
+       
+        public EinfachAntwort(int id, string atext) : base(id, atext)
         {
 
         }
@@ -70,7 +120,7 @@ namespace PrüfungsSimulator
             return cb;
         }
 
-        public MehrfachAntwort(string atext) : base(atext)
+        public MehrfachAntwort(int id, string atext) : base(id, atext)
         {
 
         }
@@ -90,7 +140,8 @@ namespace PrüfungsSimulator
             return tbo;
         }
 
-        public TextAntwort() : base()
+        
+        public TextAntwort(int id, string atext) : base(id, atext)
         {
 
         }
@@ -114,9 +165,40 @@ namespace PrüfungsSimulator
             return grd;
         }
 
-        public KontoAntwort(string atext) : base(atext)
+        public KontoAntwort(int id, string atext) : base(id, atext)
         {
 
+        }
+    }
+
+    public class AntwortAnnahme : EventArgs
+    {
+        public AntwortAnnahme(int id, string atext, int pid)
+        {
+            sid = id;
+            satext = atext;
+            spid = pid;
+        }
+        private int sid;
+        private string satext;
+        private int spid;
+
+        public int Sid
+        {
+            get { return sid; }
+            set { sid = value; }
+        }
+
+        public string Satext
+        {
+            get { return satext; }
+            set { satext = value; }
+        }
+
+        public int Spid
+        {
+            get { return spid; }
+            set { spid = value; }
         }
     }
 }

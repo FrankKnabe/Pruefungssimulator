@@ -14,6 +14,7 @@ namespace PrüfungsSimulator
 {
     public partial class Form1 : Form
     {
+        public static int id = 0;
         public Form1()
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace PrüfungsSimulator
         {
             Form2 pruefung = new Form2();
             pruefung.ShowDialog();
+            cmdBegin.Enabled = false;
         }
 
         private void cmdEnd2_Click(object sender, EventArgs e)
@@ -44,7 +46,7 @@ namespace PrüfungsSimulator
 
             string name = "";
             string surname = "";
-            string id = "";
+            
             try
             {
                 con.Open();
@@ -53,13 +55,15 @@ namespace PrüfungsSimulator
 
                 name = reader["Name"].ToString();
                 surname = reader["Nachname"].ToString();
-                id = reader["PrüflingsID"].ToString();
+                id = Convert.ToInt32(reader["PrüflingsID"].ToString());
 
-                if (name != "" && id != "" && surname != "")
+                if (name != "" && id != 0 && surname != "")
                 {
                     cmdBegin.Visible = true;
                     lblGreetings.Text += "Hallo " + name + " " + surname;
                 }
+                else
+                    MessageBox.Show("Leider ist kein Eintrag in der Datenbank vorhanden. Bitte überprüfen Sie Ihre Daten.");
 
                 reader.Close();
                 con.Close();

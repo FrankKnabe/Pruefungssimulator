@@ -81,6 +81,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(175, 20);
             this.txtName.TabIndex = 1;
+            this.txtName.Text = "Prometheus";
             // 
             // label2
             // 
@@ -97,6 +98,7 @@
             this.txtPrueflingsID.Name = "txtPrueflingsID";
             this.txtPrueflingsID.Size = new System.Drawing.Size(175, 20);
             this.txtPrueflingsID.TabIndex = 3;
+            this.txtPrueflingsID.Text = "10001";
             // 
             // cmdAnmeldung
             // 
@@ -112,9 +114,10 @@
             // lblGreetings
             // 
             this.lblGreetings.AutoSize = true;
+            this.lblGreetings.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGreetings.Location = new System.Drawing.Point(41, 249);
             this.lblGreetings.Name = "lblGreetings";
-            this.lblGreetings.Size = new System.Drawing.Size(0, 13);
+            this.lblGreetings.Size = new System.Drawing.Size(0, 20);
             this.lblGreetings.TabIndex = 10;
             // 
             // label3
@@ -132,6 +135,7 @@
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(175, 20);
             this.txtSurname.TabIndex = 2;
+            this.txtSurname.Text = "First";
             // 
             // Form1
             // 
@@ -160,7 +164,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cmdBegin;
         private System.Windows.Forms.Button cmdEnd2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtName;
@@ -170,6 +173,7 @@
         private System.Windows.Forms.Label lblGreetings;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSurname;
+        private System.Windows.Forms.Button cmdBegin;
     }
 }
 
