@@ -16,9 +16,11 @@ namespace PrüfungsSimulator
 
             public string Fragenart;
 
+            public int Fragenummer;
+
             public string ausgabe()
             {
-                return "Frage " + FragenID + ": " + Fragetext;
+                return "Frage " + (PrüfungsSimulator.Form2.aktFragennr+1) + ": " + Fragetext;
             }
 
         public Frage()
@@ -26,7 +28,17 @@ namespace PrüfungsSimulator
                 FragenID = 0;
                 Fragetext = "leer";
                 Fachrichtung = "leer";
+                Fragenummer = 0;
             }
+        public Frage(int id, string fragetext, string fach, string fart, int fnr)
+        {
+            FragenID = id;
+            Fragetext = fragetext;
+            Fachrichtung = fach;
+            Fragenart = fart;
+            Fragenummer = fnr;
+        }
+
         public Frage(int id, string fragetext, string fach, string fart)
         {
             FragenID = id;

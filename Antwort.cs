@@ -24,7 +24,6 @@ namespace PrüfungsSimulator
                 try
                 {
                     OleDbCommand cmd = new OleDbCommand();
-                    //OleDbDataReader reader;
 
                     con.ConnectionString = Properties.Settings.Default.cnn;
                     cmd.Connection = con;
@@ -65,14 +64,6 @@ namespace PrüfungsSimulator
             FragenID = 0;
             PrüflingsID = 0;
         }
-        public Antwort(int AntwortID, string Antworttext, int FragenID, string Antwortart)
-        {
-            // TODO: Complete member initialization
-            this.AntwortID = AntwortID;
-            this.Antworttext = Antworttext;
-            this.FragenID = FragenID;
-        }
-
         public Antwort(int AntwortID, string Antworttext, int FragenID)
         {
             // TODO: Complete member initialization
@@ -80,6 +71,7 @@ namespace PrüfungsSimulator
             this.Antworttext = Antworttext;
             this.FragenID = FragenID;
         }
+
 
         public Antwort(int FragenID, string Antworttext)
         {
@@ -147,7 +139,7 @@ namespace PrüfungsSimulator
         }
 
     }
-    class KontoAntwort : Antwort 
+    class TKontoAntwort : Antwort 
     {
         public object ausgabe()
         {
@@ -165,40 +157,11 @@ namespace PrüfungsSimulator
             return grd;
         }
 
-        public KontoAntwort(int id, string atext) : base(id, atext)
+        public TKontoAntwort(int id, string atext) : base(id, atext)
         {
 
         }
     }
 
-    public class AntwortAnnahme : EventArgs
-    {
-        public AntwortAnnahme(int id, string atext, int pid)
-        {
-            sid = id;
-            satext = atext;
-            spid = pid;
-        }
-        private int sid;
-        private string satext;
-        private int spid;
-
-        public int Sid
-        {
-            get { return sid; }
-            set { sid = value; }
-        }
-
-        public string Satext
-        {
-            get { return satext; }
-            set { satext = value; }
-        }
-
-        public int Spid
-        {
-            get { return spid; }
-            set { spid = value; }
-        }
-    }
+    
 }

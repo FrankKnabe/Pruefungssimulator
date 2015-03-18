@@ -17,7 +17,8 @@ namespace PrüfungsSimulator
     public partial class Form2 : Form
     {
         int pid = PrüfungsSimulator.Form1.id;
-        int id;
+        int randomnumber;
+        Random rnd = new Random();
         int fid;
         string atext;
         StackPanel sp = new StackPanel();
@@ -28,8 +29,9 @@ namespace PrüfungsSimulator
             InitializeComponent();
         }
 
-        int aktFragennr = 0;
+        public static int aktFragennr = 0;
 
+        List<Frage> tmpfragen = new List<Frage>();
         List<Frage> fragen = new List<Frage>();
         List<Antwort> antworten = new List<Antwort>();
         List<Loesung> loesungen = new List<Loesung>();
@@ -53,9 +55,17 @@ namespace PrüfungsSimulator
 
                 while (reader.Read())
                 {
-                    fragen.Add(new Frage(Convert.ToInt32(reader["fragenid"].ToString()), reader["frage"].ToString(), reader["fachrichtung"].ToString(), reader["fragenart"].ToString()));
+                    tmpfragen.Add(new Frage(Convert.ToInt32(reader["fragenid"].ToString()), reader["frage"].ToString(), reader["fachrichtung"].ToString(), reader["fragenart"].ToString()));
                 }
-                lblFrage.Text = fragen[0].ausgabe();
+
+                while(tmpfragen.Count != 0)
+                {
+                    randomnumber = rnd.Next(0, tmpfragen.Count);
+                    fragen.Add(new Frage(tmpfragen[randomnumber].FragenID, tmpfragen[randomnumber].Fragetext, tmpfragen[randomnumber].Fachrichtung, tmpfragen[randomnumber].Fragenart));
+                    tmpfragen.RemoveAt(randomnumber);
+                }
+
+                    lblFrage.Text = fragen[aktFragennr].ausgabe();
                 reader.Close();
 
                 cmd.CommandText = "select * from antwortenpool";
@@ -163,15 +173,15 @@ namespace PrüfungsSimulator
 
                 if (query[aktFragennr].Fragenart == "Einfach")
                 {
+                    int nr = aktFragennr;
                     int id = query[aktFragennr].FragenID;
                     string atext = answer[i].ToString();
                     EinfachAntwort ean = new EinfachAntwort(id, atext);
                     sp.Children.Add((System.Windows.Controls.RadioButton)ean.ausgabe());
-
-
                 }
                 else if (query[aktFragennr].Fragenart == "Mehrfach")
                 {
+                    int nr = aktFragennr;
                     int id = query[aktFragennr].FragenID;
                     string atext = answer[i].ToString();
                     MehrfachAntwort man = new MehrfachAntwort(id, atext);
@@ -179,17 +189,19 @@ namespace PrüfungsSimulator
                 }
                 else if (query[aktFragennr].Fragenart == "Text")
                 {
+                    int nr = aktFragennr;
                     int id = query[aktFragennr].FragenID;
                     string atext = "";
                     TextAntwort tan = new TextAntwort(id, atext);
                     atext = tan.Antworttext;
                     sp.Children.Add((System.Windows.Controls.TextBox)tan.ausgabe());
                 }
-                else if (query[aktFragennr].Fragenart == "Konto")
+                else if (query[aktFragennr].Fragenart == "TKonto")
                 {
+                    int nr = aktFragennr;
                     int id = query[aktFragennr].FragenID;
                     string atext = answer[i].ToString();
-                    KontoAntwort kan = new KontoAntwort(id, atext);
+                    TKontoAntwort kan = new TKontoAntwort(id, atext);
                     sp.Children.Add((System.Windows.Controls.Label)kan.ausgabe());
                     sp.Children.Add((System.Windows.Controls.Grid)kan.tabelle());
                 }
@@ -230,7 +242,6 @@ namespace PrüfungsSimulator
                 {
                     fid = fragen[aktFragennr].FragenID;
                     atext = tbo.Text;
-                    //MessageBox.Show(atext + "\n" + fid + "\n" + pid);
                     Ant.speichern(fid, atext, pid);
                 }
             }
