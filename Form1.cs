@@ -14,31 +14,38 @@ namespace PrüfungsSimulator
 {
     public partial class Form1 : Form
     {
+        //Variable zur Aufnahme der PrüflingsID
         public static int id = 0;
         public Form1()
         {
             InitializeComponent();
         }
 
+        //Der Start-Button wird betätigt
         private void cmdBegin_Click(object sender, EventArgs e)
         {
+            //Dann wird Form2 für die Prüfung erzeugt
             Form2 pruefung = new Form2();
             pruefung.ShowDialog();
+            //Und der Start-Knopf wird deaktiviert
             cmdBegin.Enabled = false;
         }
 
+        //Der Beenden-Button zum beenden des Programms
         private void cmdEnd2_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        //Mit dem Anmelde-Button wird geprüft, ob der Prüfling in der 
+        //Datenbank existiert und für die Prüfung zugelassen ist 
         private void cmdAnmeldung_Click(object sender, EventArgs e)
         {
             OleDbConnection con = new OleDbConnection();
             OleDbCommand cmd = new OleDbCommand();
             OleDbDataReader reader;
 
-            con.ConnectionString = "Provider=sqloledb; Data Source=192.168.39.130; Initial Catalog=Knabe; User ID = Knabe; Password=User2016;";
+            con.ConnectionString = Properties.Settings.Default.cnn;
 
             cmd.Connection = con;
             cmd.CommandText = "select * from Prüfling where Name = '" + txtName.Text + 
