@@ -66,6 +66,9 @@ namespace PrüfungsSimulator
 
                 if (name != "" && id != 0 && surname != "")
                 {
+                    //Wenn der Prüfling in der Datenbank existiert und somit auch
+                    //zugelassen ist, wird der Start-Button sichtbar gemacht und
+                    //am Bildschirm begrüsst
                     cmdBegin.Visible = true;
                     lblGreetings.Text += "Hallo " + name + " " + surname;
                 }

@@ -11,12 +11,13 @@ namespace PrüfungsSimulator
 {
     class Antwort
     {
-
+        //Eigenschaften der Klasse Anwort
         public int AntwortID;
         public string Antworttext;
         public int FragenID;
         public int PrüflingsID;
 
+        //Methode zum Abspeichern der gegebenen Antworten in die Datenbank
         public void speichern(int FragenID, string Antworttext, int PrüflingsID)
         {
             using (OleDbConnection con = new OleDbConnection())
@@ -28,6 +29,8 @@ namespace PrüfungsSimulator
                     con.ConnectionString = Properties.Settings.Default.cnn;
                     cmd.Connection = con;
                     //cmd.Parameters.Add()
+                    //Wenn der Prüfling eine Anwort zum ersten Mal abgibt,
+                    //wird die Antwort insert eingepflegt 
                     cmd.CommandText = "insert into PrüflingAntworten " +
                             "(FragenID, Antwort, PrüflingsID) values" +
                             "(" + FragenID + ", '" + Antworttext + "', " + PrüflingsID + ")";
@@ -39,6 +42,7 @@ namespace PrüfungsSimulator
                     }
                     catch (OleDbException oex)
                     {
+                        //Sollte der Datansatz schon vorhanden sein, wird ein update durchgeführt
                         if (oex.Message.StartsWith("Die Anweisung wurde beendet.\r\nVerletzung der PRIMARY KEY-Einschränkung"))
                         {
                             cmd.CommandText = "update PrüflingAntworten set Antwort = '" + Antworttext + "' where FragenID = '" + FragenID + "' and PrüflingsID = '" + PrüflingsID + "'";
@@ -57,6 +61,8 @@ namespace PrüfungsSimulator
                 }
             }
         }
+
+        //Konstruktoren
         public Antwort()
         {
             AntwortID = 0;
@@ -83,13 +89,14 @@ namespace PrüfungsSimulator
         //abstract public UIElement getUIElement();  
     }
 
+    //Abgeleitete Klasse für Antworten, wo nur eine Antwort richtig ist
     class EinfachAntwort : Antwort
     {
         System.Windows.Controls.RadioButton rb =
             new System.Windows.Controls.RadioButton();
         public object ausgabe()
         {
-
+            //Radiobutton wird erzeugt und zurückgegeben
                 rb.Content = Antworttext;
                 return rb;
         }
@@ -102,10 +109,12 @@ namespace PrüfungsSimulator
         
     }
 
+    //Abgeleitete Klasse für Antworten, wo mehrere Lösungen richtig sind
     class MehrfachAntwort : Antwort
     {
         public object ausgabe()
         {
+            //Checkbox wird erzeugt und zurückgegeben
             System.Windows.Controls.CheckBox cb =
                 new System.Windows.Controls.CheckBox();
             cb.Content = Antworttext;
@@ -119,10 +128,12 @@ namespace PrüfungsSimulator
 
     }
 
+    //Abgeleitete Klasse, in der ein Prüfling eine selber formulierte Antwort eingibt 
     class TextAntwort : Antwort
     {
         public object ausgabe()
         {
+            //Eine Textbox wird erzeugt und zutrückgegeben
             System.Windows.Controls.TextBox tbo =
                 new System.Windows.Controls.TextBox();
             tbo.MaxLength = 100;
@@ -139,6 +150,9 @@ namespace PrüfungsSimulator
         }
 
     }
+
+    //Diese abgeleitete Klasse ist noch nicht vollständig oder korrekt
+    //Wird in Zukunft noch verändert werden
     class TKontoAntwort : Antwort 
     {
         public object ausgabe()

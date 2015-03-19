@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PrüfungsSimulator
 {
+    //Die Klasse Lösung in der die richtige Antwort enthalten ist
     class Loesung
     {
         public int FragenID;
