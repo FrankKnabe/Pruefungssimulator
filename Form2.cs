@@ -262,6 +262,7 @@ namespace PrüfungsSimulator
         //Methode zur Abspeicherung der gegebenen Antwort
         public void AntwortSichern()
         {
+            fid = fragen[aktFragennr].FragenID;
             //Die Antworten, die gespeichert werden sollen, sind von den Events der
             //der verschiedenen Fragenarten, sprich verwendeten Steuerelementen, abhängig
             if (fragen[aktFragennr].Fragenart == "Einfach")
@@ -274,9 +275,7 @@ namespace PrüfungsSimulator
                     //weitergereicht
                     if (rb.IsChecked == true)
                     {
-                        fid = fragen[aktFragennr].FragenID;
                         atext = rb.Content.ToString();
-                        Ant.speichern(fid, atext, pid);
                     }
                 }
             }
@@ -293,9 +292,7 @@ namespace PrüfungsSimulator
                         //Da mehrere Antworten möglich sind
                         //werden sie zur besseren Lesbarkeit mit einem
                         //Semikolon getrennt
-                        fid = fragen[aktFragennr].FragenID;
                         atext += cb.Content.ToString() + ";";
-                        Ant.speichern(fid, atext, pid);
                     }
                 }
             }
@@ -306,11 +303,10 @@ namespace PrüfungsSimulator
             {
                 foreach (System.Windows.Controls.TextBox tbo in this.sp.Children)
                 {
-                    fid = fragen[aktFragennr].FragenID;
                     atext = tbo.Text;
-                    Ant.speichern(fid, atext, pid);
                 }
             }
+            Ant.speichern(fid, atext, pid);
         }
 
         //Methode zum Vergleich der gegebenen Antworten mit den richtigen Lösungen
@@ -379,7 +375,7 @@ namespace PrüfungsSimulator
 
         //    public virtual void OnNext(Antwort value)
         //    {
-
+        //        Ant.speichern(fid, atext, pid);
         //    }
         //}
     }
