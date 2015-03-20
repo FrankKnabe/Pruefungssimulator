@@ -85,7 +85,8 @@ namespace PrüfungsSimulator
             this.Antworttext = Antworttext;
         }
 
-
+        public object ausgabe()
+        {return new Object();}
         //abstract public UIElement getUIElement();  
     }
 
@@ -94,7 +95,7 @@ namespace PrüfungsSimulator
     {
         System.Windows.Controls.RadioButton rb =
             new System.Windows.Controls.RadioButton();
-        public object ausgabe()
+        public virtual object ausgabe()
         {
             //Radiobutton wird erzeugt und zurückgegeben
                 rb.Content = Antworttext;
@@ -112,7 +113,7 @@ namespace PrüfungsSimulator
     //Abgeleitete Klasse für Antworten, wo mehrere Lösungen richtig sind
     class MehrfachAntwort : Antwort
     {
-        public object ausgabe()
+        public virtual object ausgabe()
         {
             //Checkbox wird erzeugt und zurückgegeben
             System.Windows.Controls.CheckBox cb =
@@ -131,7 +132,7 @@ namespace PrüfungsSimulator
     //Abgeleitete Klasse, in der ein Prüfling eine selber formulierte Antwort eingibt 
     class TextAntwort : Antwort
     {
-        public object ausgabe()
+        public virtual object ausgabe()
         {
             //Eine Textbox wird erzeugt und zutrückgegeben
             System.Windows.Controls.TextBox tbo =
@@ -155,7 +156,7 @@ namespace PrüfungsSimulator
     //Wird in Zukunft noch verändert werden
     class TKontoAntwort : Antwort 
     {
-        public object ausgabe()
+        public virtual object ausgabe()
         {
             System.Windows.Controls.Label lbl =
                 new System.Windows.Controls.Label();
@@ -177,5 +178,46 @@ namespace PrüfungsSimulator
         }
     }
 
-    
+    //public class AntwortHandler: IObservable<Antwort>
+    //{
+    //    List<IObserver<Antwort>> observers;
+
+    //    public AntwortHandler()
+    //    {
+    //        observers = new List<IObserver<Antwort>>();
+    //    }
+
+    //    private class Unsubscriber : IDisposable
+    //    {
+    //        private List<IObserver<Antwort>> _observers;
+    //        private IObserver<Antwort> _observer;
+
+    //        public Unsubscriber(List<IObserver<Antwort>> observers, IObserver<Antwort> observer)
+    //        {
+    //            this._observers = observers;
+    //            this._observer = observer;
+    //        }
+
+    //        public void Dispose()
+    //        {
+    //            if (!(_observer == null)) _observers.Remove(_observer);
+    //        }
+    //    }
+
+    //    public IDisposable Subscribe(IObserver<Antwort> observer)
+    //    {
+    //        if (! observers.Contains(observer))
+    //        {
+    //            observers.Add(observer);
+
+    //        }
+    //        return new Unsubscriber(observers, observer);
+    //    }   
+    //    public void GetAtext()
+    //    {
+
+    //    }
+    //}
+
+
 }

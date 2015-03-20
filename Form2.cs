@@ -362,5 +362,25 @@ namespace PrüfungsSimulator
             //Das Ergebnis wird dem Prüfling angezeigt
             MessageBox.Show("Sie haben " + anzahlRichtig + " von " + pruefling.Count + " Fragen richtig beantwortet.");
         }
+
+        //public class AntwortBeobachter : IObserver<Antwort>
+        //{
+        //    private IDisposable unsubscriber;
+
+        //    public virtual void Subscribe(IObservable<Antwort> provider)
+        //    {
+        //        unsubscriber = provider.Subscribe(this);
+        //    }
+
+        //    public virtual void Unsubscribe()
+        //    {
+        //        unsubscriber.Dispose();
+        //    }
+
+        //    public virtual void OnNext(Antwort value)
+        //    {
+
+        //    }
+        //}
     }
 }
