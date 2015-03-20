@@ -60,6 +60,23 @@ namespace PrüfungsSimulator
                     con.Close();
                 }
             }
+
+
+        }
+
+        public int id
+        {
+            get { return this.FragenID; }
+        }
+
+        public string atext
+        {
+            get { return this.Antworttext; }
+        }
+
+        public int pid
+        {
+            get { return this.PrüflingsID; }
         }
 
         //Konstruktoren
@@ -176,9 +193,10 @@ namespace PrüfungsSimulator
         {
 
         }
+
     }
 
-    //public class AntwortHandler: IObservable<Antwort>
+    //public class AntwortHandler : IObservable<Antwort>
     //{
     //    List<IObserver<Antwort>> observers;
 
@@ -206,16 +224,21 @@ namespace PrüfungsSimulator
 
     //    public IDisposable Subscribe(IObserver<Antwort> observer)
     //    {
-    //        if (! observers.Contains(observer))
+    //        if (!observers.Contains(observer))
     //        {
     //            observers.Add(observer);
 
     //        }
     //        return new Unsubscriber(observers, observer);
-    //    }   
+    //    }
     //    public void GetAtext()
     //    {
+    //        var datensatz = 
 
+    //        foreach (var atext in datensatz)
+    //        {
+
+    //        }
     //    }
     //}
 
