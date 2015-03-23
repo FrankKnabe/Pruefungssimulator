@@ -313,10 +313,9 @@ namespace PrüfungsSimulator
                 }
             }
             //Antwort Ant = new Antwort(fid, atext, pid);
-            provider.GetAtext(fid, pid, atext);
             observer.Subscribe(provider);
+            provider.GetAtext(fid, pid, atext);
         }
-
         //Methode zum Vergleich der gegebenen Antworten mit den richtigen Lösungen
         private  void ErgebnisBerechnung(List<Loesung> rightanswers)
         {
