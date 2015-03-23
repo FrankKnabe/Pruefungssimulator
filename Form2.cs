@@ -16,15 +16,16 @@ namespace PrüfungsSimulator
 
     public partial class Form2 : Form
     {
-        //Übernahme der PrüflingsID von der Eibgabemaske
-        int pid = PrüfungsSimulator.Form1.id;
+        //Übernahme der PrüflingsID von der Eingabemaske
+        static int pid = PrüfungsSimulator.Form1.id;
 
         int randomnumber;
         Random rnd = new Random();
-        int fid;
-        string atext;
+        static int fid;
+        static string atext;
         StackPanel sp = new StackPanel();
-        Antwort Ant = new Antwort();
+        AntwortHandler provider = new AntwortHandler();
+        AntwortBeobachter observer = new AntwortBeobachter();
 
         public Form2()
         {
@@ -71,7 +72,8 @@ namespace PrüfungsSimulator
                 while(tmpfragen.Count != 0)
                 {
                     randomnumber = rnd.Next(0, tmpfragen.Count);
-                    fragen.Add(new Frage(tmpfragen[randomnumber].FragenID, tmpfragen[randomnumber].Fragetext, tmpfragen[randomnumber].Fachrichtung, tmpfragen[randomnumber].Fragenart));
+                    //fragen.Add(new Frage(tmpfragen[randomnumber].FragenID, tmpfragen[randomnumber].Fragetext, tmpfragen[randomnumber].Fachrichtung, tmpfragen[randomnumber].Fragenart));
+                    fragen.Add(tmpfragen[randomnumber]);
                     tmpfragen.RemoveAt(randomnumber);
                 }
 
@@ -172,6 +174,8 @@ namespace PrüfungsSimulator
 
             //Die Methode zum Vergleich der gegebenen Antwort mit den richtigen Antworten wird angestossen
             ErgebnisBerechnung(loesungen);
+            observer.Unsubscribe();
+            provider.Pruefungsende();
 
             Close();
         }
@@ -222,6 +226,8 @@ namespace PrüfungsSimulator
                     //die nur eine Antwort zulassen zum StackPanel hinzugefügt
                     int id = query[aktFragennr].FragenID;
                     string atext = answer[i].ToString();
+                    //EinfachAntwort ean = new EinfachAntwort(id, atext);
+                    //sp.Children.Add((System.Windows.Controls.RadioButton)ean.ausgabe());
                     EinfachAntwort ean = new EinfachAntwort(id, atext);
                     sp.Children.Add((System.Windows.Controls.RadioButton)ean.ausgabe());
                 }
@@ -239,9 +245,9 @@ namespace PrüfungsSimulator
                     //Hier werden Textboxen nebst Anworttext für Fragen, 
                     //die nur eine Antwort zulassen zum StackPanel hinzugefügt
                     int id = query[aktFragennr].FragenID;
-                    string atext = "";
+                    string atext = answer[i].ToString();//"";
                     TextAntwort tan = new TextAntwort(id, atext);
-                    atext = tan.Antworttext;
+                    //atext = tan.Antworttext;
                     sp.Children.Add((System.Windows.Controls.TextBox)tan.ausgabe());
                 }
                 else if (query[aktFragennr].Fragenart == "TKonto")
@@ -306,7 +312,9 @@ namespace PrüfungsSimulator
                     atext = tbo.Text;
                 }
             }
-            Ant.speichern(fid, atext, pid);
+            //Antwort Ant = new Antwort(fid, atext, pid);
+            provider.GetAtext(fid, pid, atext);
+            observer.Subscribe(provider);
         }
 
         //Methode zum Vergleich der gegebenen Antworten mit den richtigen Lösungen
@@ -359,24 +367,6 @@ namespace PrüfungsSimulator
             MessageBox.Show("Sie haben " + anzahlRichtig + " von " + pruefling.Count + " Fragen richtig beantwortet.");
         }
 
-        //public class AntwortBeobachter : IObserver<Antwort>
-        //{
-        //    private IDisposable unsubscriber;
 
-        //    public virtual void Subscribe(IObservable<Antwort> provider)
-        //    {
-        //        unsubscriber = provider.Subscribe(this);
-        //    }
-
-        //    public virtual void Unsubscribe()
-        //    {
-        //        unsubscriber.Dispose();
-        //    }
-
-        //    public virtual void OnNext(Antwort value)
-        //    {
-        //        Ant.speichern(fid, atext, pid);
-        //    }
-        //}
     }
 }
