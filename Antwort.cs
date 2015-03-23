@@ -115,6 +115,7 @@ namespace PrüfungsSimulator
         {
             return new Object();
         }
+        //Die nachfolgende Anweisung sollte die ausgabe() ersetzen
         //abstract public UIElement getUIElement();  
     }
 
