@@ -9,7 +9,7 @@ using System.Data.OleDb;
 
 namespace PrüfungsSimulator
 {
-    class Antwort
+    public class Antwort
     {
         //Eigenschaften der Klasse Anwort
         public int AntwortID;
@@ -18,7 +18,7 @@ namespace PrüfungsSimulator
         public int PrüflingsID;
 
         //Methode zum Abspeichern der gegebenen Antworten in die Datenbank
-        public void speichern(int FragenID, string Antworttext, int PrüflingsID)
+        public void speichern(int FragenID, int PrüflingsID, string Antworttext)
         {
             using (OleDbConnection con = new OleDbConnection())
             {
@@ -47,6 +47,10 @@ namespace PrüfungsSimulator
                         {
                             cmd.CommandText = "update PrüflingAntworten set Antwort = '" + Antworttext + "' where FragenID = '" + FragenID + "' and PrüflingsID = '" + PrüflingsID + "'";
                             cmd.ExecuteNonQuery();
+                        }
+                        else 
+                        {
+                            MessageBox.Show(oex.Message);
                         }
                     }
                     
@@ -95,7 +99,12 @@ namespace PrüfungsSimulator
             this.FragenID = FragenID;
         }
 
-
+        public Antwort(int FragenID, int PrüflingsID, string Antworttext)
+        {
+            this.FragenID = FragenID;
+            this.PrüflingsID = PrüflingsID;
+            this.Antworttext = Antworttext;
+        }
         public Antwort(int FragenID, string Antworttext)
         {
             this.FragenID = FragenID;
@@ -103,7 +112,9 @@ namespace PrüfungsSimulator
         }
 
         public object ausgabe()
-        {return new Object();}
+        {
+            return new Object();
+        }
         //abstract public UIElement getUIElement();  
     }
 
@@ -195,52 +206,5 @@ namespace PrüfungsSimulator
         }
 
     }
-
-    //public class AntwortHandler : IObservable<Antwort>
-    //{
-    //    List<IObserver<Antwort>> observers;
-
-    //    public AntwortHandler()
-    //    {
-    //        observers = new List<IObserver<Antwort>>();
-    //    }
-
-    //    private class Unsubscriber : IDisposable
-    //    {
-    //        private List<IObserver<Antwort>> _observers;
-    //        private IObserver<Antwort> _observer;
-
-    //        public Unsubscriber(List<IObserver<Antwort>> observers, IObserver<Antwort> observer)
-    //        {
-    //            this._observers = observers;
-    //            this._observer = observer;
-    //        }
-
-    //        public void Dispose()
-    //        {
-    //            if (!(_observer == null)) _observers.Remove(_observer);
-    //        }
-    //    }
-
-    //    public IDisposable Subscribe(IObserver<Antwort> observer)
-    //    {
-    //        if (!observers.Contains(observer))
-    //        {
-    //            observers.Add(observer);
-
-    //        }
-    //        return new Unsubscriber(observers, observer);
-    //    }
-    //    public void GetAtext()
-    //    {
-    //        var datensatz = 
-
-    //        foreach (var atext in datensatz)
-    //        {
-
-    //        }
-    //    }
-    //}
-
 
 }
