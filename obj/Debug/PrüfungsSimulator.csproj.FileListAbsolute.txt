@@ -9,12 +9,11 @@ c:\users\developer\documents\visual studio 2013\Projects\PrüfungsSimulator\Prü
 c:\users\developer\documents\visual studio 2013\Projects\PrüfungsSimulator\PrüfungsSimulator\obj\Debug\PrüfungsSimulator.pdb
 C:\Users\Developer\documents\visual studio 2013\Projects\PrüfungsSimulator\PrüfungsSimulator\obj\Debug\PrüfungsSimulator.csprojResolveAssemblyReference.cache
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\bin\Debug\PrüfungsSimulator.exe.config
-C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.exe
-C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.pdb
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\bin\Debug\PrüfungsSimulator.exe
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\bin\Debug\PrüfungsSimulator.pdb
-C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.csprojResolveAssemblyReference.cache
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.Form1.resources
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.Form2.resources
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.Properties.Resources.resources
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.csproj.GenerateResource.Cache
+C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.exe
+C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.pdb

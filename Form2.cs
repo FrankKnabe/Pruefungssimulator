@@ -212,20 +212,21 @@ namespace PrüfungsSimulator
         //Methode zur Antworterzeugung in Form2
         private void AntwortHinzufuegen(List<Frage> query, ArrayList answer)
         {
-            //Zuerst wird das StachPanel gellert 
+            //Zuerst wird das StachPanel geleert 
             sp.Children.Clear();
+
 
             //Nun wird die Arrayliste mit den passenden Antworten abgearbeitet
             for (int i = 0; i < answer.Count; i++)
             {
+                int id = query[aktFragennr].FragenID;
+                string atext = answer[i].ToString();
                 //Je nach Fragenart wird ein Antworttext zum passenden Steuerelement
                 //hinzugefügt
                 if (query[aktFragennr].Fragenart == "Einfach")
                 {
                     //Hier werden Radiobuttons nebst Anworttext für Fragen, 
                     //die nur eine Antwort zulassen zum StackPanel hinzugefügt
-                    int id = query[aktFragennr].FragenID;
-                    string atext = answer[i].ToString();
                     //EinfachAntwort ean = new EinfachAntwort(id, atext);
                     //sp.Children.Add((System.Windows.Controls.RadioButton)ean.ausgabe());
                     EinfachAntwort ean = new EinfachAntwort(id, atext);
@@ -235,8 +236,6 @@ namespace PrüfungsSimulator
                 {
                     //Hier werden Checkboxen nebst Anworttext für Fragen, 
                     //die nur eine Antwort zulassen zum StackPanel hinzugefügt
-                    int id = query[aktFragennr].FragenID;
-                    string atext = answer[i].ToString();
                     MehrfachAntwort man = new MehrfachAntwort(id, atext);
                     sp.Children.Add((System.Windows.Controls.CheckBox)man.ausgabe());
                 }
@@ -244,18 +243,13 @@ namespace PrüfungsSimulator
                 {
                     //Hier werden Textboxen nebst Anworttext für Fragen, 
                     //die nur eine Antwort zulassen zum StackPanel hinzugefügt
-                    int id = query[aktFragennr].FragenID;
-                    string atext = answer[i].ToString();//"";
                     TextAntwort tan = new TextAntwort(id, atext);
-                    //atext = tan.Antworttext;
                     sp.Children.Add((System.Windows.Controls.TextBox)tan.ausgabe());
                 }
                 else if (query[aktFragennr].Fragenart == "TKonto")
                 {
                     //Hier sollen mal ein T-Konto-Konstruckt zum StackPanel
                     //hinzugefügt werden, aber das gibt es noch nicht
-                    int id = query[aktFragennr].FragenID;
-                    string atext = answer[i].ToString();
                     TKontoAntwort kan = new TKontoAntwort(id, atext);
                     sp.Children.Add((System.Windows.Controls.Label)kan.ausgabe());
                     sp.Children.Add((System.Windows.Controls.Grid)kan.tabelle());

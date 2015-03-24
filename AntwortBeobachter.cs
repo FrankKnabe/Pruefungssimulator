@@ -33,8 +33,7 @@ namespace PrüfungsSimulator
         }
 
         //Hier würden alle weitere Listen aus dewm Speicher entfernt. Da aber nur die Liste der Observer
-        //erstellt wird, steht hier nichts drin. Eventuell könnten aber auch die von Form2 erstellten
-        //Listen hier aufgeräumt werden
+        //erstellt wird, steht hier nichts drin.
         public virtual void OnCompleted()
         {
           
