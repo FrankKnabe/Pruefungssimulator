@@ -52,7 +52,7 @@ namespace PrüfungsSimulator
             return new Unsubscriber(observers, observer);
         }
 
-        //Hier 
+        //Hier die Methode, die den zu speichernden Datensatz vom Observer aufnimmt
         public void GetAtext(int id, int pid, string atext)
         {
             var datensatz = new Antwort(id, pid, atext );
@@ -63,6 +63,8 @@ namespace PrüfungsSimulator
             }
         }
 
+        //Wird die Prüfung beendet, werden mit dieser Methode die Observer und die Liste
+        //aufgeräumt
         public void Pruefungsende()
         {
             foreach (var observer in observers)
