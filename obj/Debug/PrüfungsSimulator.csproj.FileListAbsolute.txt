@@ -17,3 +17,4 @@ C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\Prüfu
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.csproj.GenerateResource.Cache
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.exe
 C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.pdb
+C:\Users\Developer\Documents\Visual Studio 2013\Projects\github\obj\Debug\PrüfungsSimulator.csprojResolveAssemblyReference.cache

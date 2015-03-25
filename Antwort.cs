@@ -111,20 +111,20 @@ namespace PrüfungsSimulator
             this.Antworttext = Antworttext;
         }
 
-        public object ausgabe()
+        public UIElement ausgabe()
         {
-            return new Object();
+            return new UIElement();
         }
         //Die nachfolgende Anweisung sollte die ausgabe() ersetzen
         //abstract public UIElement getUIElement();  
     }
 
     //Abgeleitete Klasse für Antworten, wo nur eine Antwort richtig ist
-    class EinfachAntwort : Antwort
+    public class EinfachAntwort : Antwort
     {
         System.Windows.Controls.RadioButton rb =
             new System.Windows.Controls.RadioButton();
-        public virtual object ausgabe()
+        public virtual UIElement ausgabe()
         {
             //Radiobutton wird erzeugt und zurückgegeben
                 rb.Content = Antworttext;
@@ -140,9 +140,9 @@ namespace PrüfungsSimulator
     }
 
     //Abgeleitete Klasse für Antworten, wo mehrere Lösungen richtig sind
-    class MehrfachAntwort : Antwort
+    public class MehrfachAntwort : Antwort
     {
-        public virtual object ausgabe()
+        public virtual UIElement ausgabe()
         {
             //Checkbox wird erzeugt und zurückgegeben
             System.Windows.Controls.CheckBox cb =
@@ -159,9 +159,9 @@ namespace PrüfungsSimulator
     }
 
     //Abgeleitete Klasse, in der ein Prüfling eine selber formulierte Antwort eingibt 
-    class TextAntwort : Antwort
+    public class TextAntwort : Antwort
     {
-        public virtual object ausgabe()
+        public virtual UIElement ausgabe()
         {
             //Eine Textbox wird erzeugt und zutrückgegeben
             System.Windows.Controls.TextBox tbo =
@@ -183,9 +183,9 @@ namespace PrüfungsSimulator
 
     //Diese abgeleitete Klasse ist noch nicht vollständig oder korrekt
     //Wird in Zukunft noch verändert werden
-    class TKontoAntwort : Antwort 
+     public class TKontoAntwort : Antwort 
     {
-        public virtual object ausgabe()
+        public virtual UIElement ausgabe()
         {
             System.Windows.Controls.Label lbl =
                 new System.Windows.Controls.Label();

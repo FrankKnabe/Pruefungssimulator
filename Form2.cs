@@ -215,7 +215,6 @@ namespace PrüfungsSimulator
             //Zuerst wird das StachPanel geleert 
             sp.Children.Clear();
 
-
             //Nun wird die Arrayliste mit den passenden Antworten abgearbeitet
             for (int i = 0; i < answer.Count; i++)
             {
@@ -227,24 +226,22 @@ namespace PrüfungsSimulator
                 {
                     //Hier werden Radiobuttons nebst Anworttext für Fragen, 
                     //die nur eine Antwort zulassen zum StackPanel hinzugefügt
-                    //EinfachAntwort ean = new EinfachAntwort(id, atext);
-                    //sp.Children.Add((System.Windows.Controls.RadioButton)ean.ausgabe());
                     EinfachAntwort ean = new EinfachAntwort(id, atext);
-                    sp.Children.Add((System.Windows.Controls.RadioButton)ean.ausgabe());
+                    sp.Children.Add((System.Windows.UIElement)ean.ausgabe());
                 }
                 else if (query[aktFragennr].Fragenart == "Mehrfach")
                 {
                     //Hier werden Checkboxen nebst Anworttext für Fragen, 
                     //die nur eine Antwort zulassen zum StackPanel hinzugefügt
                     MehrfachAntwort man = new MehrfachAntwort(id, atext);
-                    sp.Children.Add((System.Windows.Controls.CheckBox)man.ausgabe());
+                    sp.Children.Add((System.Windows.UIElement)man.ausgabe());
                 }
                 else if (query[aktFragennr].Fragenart == "Text")
                 {
                     //Hier werden Textboxen nebst Anworttext für Fragen, 
                     //die nur eine Antwort zulassen zum StackPanel hinzugefügt
                     TextAntwort tan = new TextAntwort(id, atext);
-                    sp.Children.Add((System.Windows.Controls.TextBox)tan.ausgabe());
+                    sp.Children.Add((System.Windows.UIElement)tan.ausgabe());
                 }
                 else if (query[aktFragennr].Fragenart == "TKonto")
                 {
