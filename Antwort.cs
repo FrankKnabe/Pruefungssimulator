@@ -16,6 +16,7 @@ namespace PrüfungsSimulator
         public string Antworttext;
         public int FragenID;
         public int PrüflingsID;
+        public string Fragenart;
 
         //Methode zum Abspeichern der gegebenen Antworten in die Datenbank
         public void speichern(int FragenID, int PrüflingsID, string Antworttext)
@@ -91,7 +92,7 @@ namespace PrüfungsSimulator
             FragenID = 0;
             PrüflingsID = 0;
         }
-        public Antwort(int AntwortID, string Antworttext, int FragenID)
+        public Antwort(int AntwortID, string Antworttext, int FragenID)//, string Fragenart )
         {
             // TODO: Complete member initialization
             this.AntwortID = AntwortID;
@@ -111,7 +112,7 @@ namespace PrüfungsSimulator
             this.Antworttext = Antworttext;
         }
 
-        public UIElement ausgabe()
+        public virtual UIElement ausgabe()
         {
             return new UIElement();
         }
@@ -124,25 +125,31 @@ namespace PrüfungsSimulator
     {
         System.Windows.Controls.RadioButton rb =
             new System.Windows.Controls.RadioButton();
-        public virtual UIElement ausgabe()
+        public override UIElement ausgabe()
         {
             //Radiobutton wird erzeugt und zurückgegeben
-                rb.Content = Antworttext;
-                return rb;
+            rb.Content = Antworttext;
+            return rb;
         }
 
-       
-        public EinfachAntwort(int id, string atext) : base(id, atext)
+
+        public EinfachAntwort(int id, string atext)
+            : base(id, atext)
         {
 
         }
-        
+
+        public EinfachAntwort()
+        {
+
+        }
+
     }
 
     //Abgeleitete Klasse für Antworten, wo mehrere Lösungen richtig sind
     public class MehrfachAntwort : Antwort
     {
-        public virtual UIElement ausgabe()
+        public override UIElement ausgabe()
         {
             //Checkbox wird erzeugt und zurückgegeben
             System.Windows.Controls.CheckBox cb =
@@ -156,12 +163,17 @@ namespace PrüfungsSimulator
 
         }
 
+        public MehrfachAntwort()
+        {
+
+        }
+
     }
 
     //Abgeleitete Klasse, in der ein Prüfling eine selber formulierte Antwort eingibt 
     public class TextAntwort : Antwort
     {
-        public virtual UIElement ausgabe()
+        public override UIElement ausgabe()
         {
             //Eine Textbox wird erzeugt und zutrückgegeben
             System.Windows.Controls.TextBox tbo =
@@ -179,13 +191,18 @@ namespace PrüfungsSimulator
 
         }
 
+        public TextAntwort()
+        {
+
+        }
+
     }
 
     //Diese abgeleitete Klasse ist noch nicht vollständig oder korrekt
     //Wird in Zukunft noch verändert werden
      public class TKontoAntwort : Antwort 
     {
-        public virtual UIElement ausgabe()
+        public override UIElement ausgabe()
         {
             System.Windows.Controls.Label lbl =
                 new System.Windows.Controls.Label();

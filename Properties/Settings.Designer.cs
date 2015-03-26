@@ -26,8 +26,8 @@ namespace PrüfungsSimulator.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=sqloledb;Data Source=192.168.39.130;Password=User2016;User ID=Knabe;Init" +
-            "ial Catalog=Knabe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=sqloledb;Data Source=192.168.39.70;Password=User2016;User ID=Knabe;Initi" +
+            "al Catalog=Knabe")]
         public string cnn {
             get {
                 return ((string)(this["cnn"]));

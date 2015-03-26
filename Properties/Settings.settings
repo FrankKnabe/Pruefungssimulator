@@ -5,10 +5,10 @@
     <Setting Name="cnn" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Provider=sqloledb;Data Source=192.168.39.130;Password=User2016;User ID=Knabe;Initial Catalog=Knabe&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Provider=sqloledb;Data Source=192.168.39.70;Password=User2016;User ID=Knabe;Initial Catalog=Knabe&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.OleDb&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Provider=sqloledb;Data Source=192.168.39.130;Password=User2016;User ID=Knabe;Initial Catalog=Knabe</Value>
+      <Value Profile="(Default)">Provider=sqloledb;Data Source=192.168.39.70;Password=User2016;User ID=Knabe;Initial Catalog=Knabe</Value>
     </Setting>
   </Settings>
 </SettingsFile>

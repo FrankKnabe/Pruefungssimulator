@@ -218,39 +218,17 @@ namespace PrüfungsSimulator
             //Nun wird die Arrayliste mit den passenden Antworten abgearbeitet
             for (int i = 0; i < answer.Count; i++)
             {
-                int id = query[aktFragennr].FragenID;
-                string atext = answer[i].ToString();
                 //Je nach Fragenart wird ein Antworttext zum passenden Steuerelement
                 //hinzugefügt
-                if (query[aktFragennr].Fragenart == "Einfach")
-                {
-                    //Hier werden Radiobuttons nebst Anworttext für Fragen, 
-                    //die nur eine Antwort zulassen zum StackPanel hinzugefügt
-                    EinfachAntwort ean = new EinfachAntwort(id, atext);
-                    sp.Children.Add((System.Windows.UIElement)ean.ausgabe());
-                }
-                else if (query[aktFragennr].Fragenart == "Mehrfach")
-                {
-                    //Hier werden Checkboxen nebst Anworttext für Fragen, 
-                    //die nur eine Antwort zulassen zum StackPanel hinzugefügt
-                    MehrfachAntwort man = new MehrfachAntwort(id, atext);
-                    sp.Children.Add((System.Windows.UIElement)man.ausgabe());
-                }
-                else if (query[aktFragennr].Fragenart == "Text")
-                {
-                    //Hier werden Textboxen nebst Anworttext für Fragen, 
-                    //die nur eine Antwort zulassen zum StackPanel hinzugefügt
-                    TextAntwort tan = new TextAntwort(id, atext);
-                    sp.Children.Add((System.Windows.UIElement)tan.ausgabe());
-                }
-                else if (query[aktFragennr].Fragenart == "TKonto")
-                {
-                    //Hier sollen mal ein T-Konto-Konstruckt zum StackPanel
-                    //hinzugefügt werden, aber das gibt es noch nicht
-                    TKontoAntwort kan = new TKontoAntwort(id, atext);
-                    sp.Children.Add((System.Windows.Controls.Label)kan.ausgabe());
-                    sp.Children.Add((System.Windows.Controls.Grid)kan.tabelle());
-                }
+                int id = query[aktFragennr].FragenID;
+                string atext = answer[i].ToString();
+                //Der Klassenname wird dem Assemblynamen und der Fragenart zusammen gestellt
+                string ClassName = "PrüfungsSimulator." + query[aktFragennr].Fragenart;
+                //Es wird eine Instanz ant erzeugt, die einen Konstruktor aufruft, der die passenden
+                //Steuerelemente in das Antwortfeld implementiert
+                Antwort ant = (Antwort)Activator.CreateInstance(Type.GetType(ClassName), new object[] { id, atext });
+                //Die Steuerelemente werden zum StackPanel hinzugefügt
+                sp.Children.Add(ant.ausgabe());
             }
             //Das StackPanel wird in die Groupbox eingefügt 
             eHost1.Child = sp;
@@ -262,7 +240,7 @@ namespace PrüfungsSimulator
             fid = fragen[aktFragennr].FragenID;
             //Die Antworten, die gespeichert werden sollen, sind von den Events der
             //der verschiedenen Fragenarten, sprich verwendeten Steuerelementen, abhängig
-            if (fragen[aktFragennr].Fragenart == "Einfach")
+            if (fragen[aktFragennr].Fragenart == "EinfachAntwort")
             {
                 //Jedes Radiobutton wird geprüft, ob es markiert ist oder nicht
                 foreach (System.Windows.Controls.RadioButton rb in this.sp.Children)
@@ -277,7 +255,7 @@ namespace PrüfungsSimulator
                 }
             }
                 //Hier wird das Gleiche getan mit den Checkboxen
-            else if (fragen[aktFragennr].Fragenart == "Mehrfach")
+            else if (fragen[aktFragennr].Fragenart == "MehrfachAntwort")
             {
                 //jedoch muss der Antworttext vorher gelöscht werden, da
                 //sonst die Antworten nicht korrekt übergeben wird
@@ -296,7 +274,7 @@ namespace PrüfungsSimulator
                 //Hier wird der Inhalt der Textboxen (später sollen auch mal mehrere Textboxen
                 //möglich sein), an die entsprechende Methode der Antwort-Klasse 
                 //übergeben werden
-            else if (fragen[aktFragennr].Fragenart == "Text")
+            else if (fragen[aktFragennr].Fragenart == "TextAntwort")
             {
                 foreach (System.Windows.Controls.TextBox tbo in this.sp.Children)
                 {

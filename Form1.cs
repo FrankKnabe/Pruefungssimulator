@@ -77,6 +77,7 @@ namespace PrüfungsSimulator
 
                 reader.Close();
                 con.Close();
+                cmdAnmeldung.Visible = false;
             }
             catch (Exception ex)
             {
