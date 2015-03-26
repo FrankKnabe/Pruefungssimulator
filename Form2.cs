@@ -281,7 +281,6 @@ namespace PrüfungsSimulator
                     atext = tbo.Text;
                 }
             }
-            //Antwort Ant = new Antwort(fid, atext, pid);
             observer.Subscribe(provider);
             provider.GetAtext(fid, pid, atext);
         }
@@ -334,7 +333,6 @@ namespace PrüfungsSimulator
             //Das Ergebnis wird dem Prüfling angezeigt
             MessageBox.Show("Sie haben " + anzahlRichtig + " von " + pruefling.Count + " Fragen richtig beantwortet.");
         }
-
 
     }
 }
